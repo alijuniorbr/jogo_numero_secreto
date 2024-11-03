@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+}
+
+    .textos /*FLEXBOX*/ {
+        padding: 10% 20% 0 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+        .textos_titulo {
+            font-size: 3rem;
+        }
+
+        .paragrafo_explicacao {
+            text-align: center;
+            font-size: 1.3rem;
+        }
+        
+    #usuario /*FLEXBOX*/ {
+        display: flex;
+        gap: 50px;
+        margin: 5%;
+        justify-content: center;
+        align-items: center;
+    }
+
+        #usuario_interacoes {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+            #input_chute {
+                display: flex;
+                text-align: center;
+                font-size: 1.5rem;
+                width: auto;
+                height: 40px;
+            }
+
+            #botao_chute {
+                height: 45px;
+                width: 57px;
+            }
+            
+    
+
+        #visor_tentativas {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border-style: groove;
+            border-radius: 10%;
+            width: 100px;
+            height: 80px;
+            background-color: rgb(218, 218, 218);
+        }
+
+        

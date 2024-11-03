@@ -56,7 +56,7 @@ function verificarChute(chute) {
 }
 function exibeMensagemVitoria() {
     location.replace("./acerto.html");
-    console.log('Parabéns, otário');
+    //console.log('Parabéns, otário');
     //mensagem = `Você descobriu o número sorteado em ${quantidade_tentativas} tentativas e venceu o jogo.`;
     //paragrafo_acerto.innerHTML = mensagem;
 }

@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" src="favicon.ico"/>
+    <link rel="stylesheet" href=".\styles.css"/>
     <title>Jogo do Número Secreto</title>
 </head>
 <body>
-    <h1>Jogo do Número Secreto</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni natus omnis deserunt officiis et, voluptate nihil ad dolorum culpa repudiandae illum vel saepe numquam voluptates rerum quaerat praesentium repellendus dolore?</p>
-    <p>Insira o número: </p>
-    <input id="input_chute" type="number" placeholder="Digite o número" />
-    <button id="botao_chute" type="button">Verificar chute</button>
-    <p id="visor_tentativas"></h2>
-    <link rel="stylesheet" href="styles.css"/>
+    <section class="textos">
+        <h1 class="textos_titulo"><strong>Jogo do Número Secreto</strong></h1>
+        <p class="paragrafo_explicacao">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni natus omnis deserunt officiis et, voluptate nihil ad dolorum culpa repudiandae illum vel saepe numquam voluptates rerum quaerat praesentium repellendus dolore?</p>
+    </section>
+    <section id="usuario">
+        <div id="usuario_interacoes">
+            <!--p>Insira o número: </p-->
+            <input id="input_chute" type="number" value="" placeholder="Digite o número" />
+            <button id="botao_chute" type="button">Chutar</button>
+        </div>
+        <p id="visor_tentativas"></p>
+    </section>
+
     <script src="main.js"></script>
 </body>
 </html>
