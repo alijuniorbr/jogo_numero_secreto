@@ -1,15 +1,17 @@
-var botao_chute;
-var input_chute, visor_tentativas;
-var chute, numero_sorteado, quantidade_tentativas = 0;
-var mensagem;
-botao_chute = document.querySelector('#botao_chute');
-input_chute = document.querySelector('#input_chute');
-visor_tentativas = document.querySelector('#visor_tentativas');
-//paragrafo_acerto = document.querySelector('#mensagem_acerto');
+"use strict";
+let botao_chute = document.querySelector('#botao_chute');
+let input_chute = document.querySelector('#input_chute');
+let visor_tentativas = document.querySelector('#visor_tentativas');
+let mensagem_acerto = document.querySelector('#mensagem_acerto');
+let chute = 0;
+let numero_sorteado = 0;
+let quantidade_tentativas = 0;
+//mensagem_acerto = quantidade_tentativas.toString();
 sorteiaNumeroAleatorio();
 atualizaVisorTentativas();
-botao_chute === null || botao_chute === void 0 ? void 0 : botao_chute.addEventListener('click', function () {
-    chute = input_chute.valueAsNumber;
+//ADICIONA EVENTO DE CLIQUE NO BOTÃO CHUTAR
+botao_chute?.addEventListener('click', () => {
+    input_chute != null ? chute = input_chute.valueAsNumber : console.log("Elemento INPUT vazio");
     verificarChute(chute);
 });
 function sorteiaNumeroAleatorio() {
@@ -17,25 +19,22 @@ function sorteiaNumeroAleatorio() {
     console.log('Número sorteado: ' + numero_sorteado);
 }
 function reiniciarJogo() {
-    input_chute.valueAsNumber = 0;
+    input_chute != null ? input_chute.valueAsNumber = 0 : console.log("Elemento INPUT vazio");
     quantidade_tentativas = 0;
     atualizaVisorTentativas();
     sorteiaNumeroAleatorio();
 }
-function verificarChute(chute) {
-    if (chute === numero_sorteado) {
+/*function verificarChute(chute: number) {
+    if(chute === numero_sorteado) {
         quantidade_tentativas++;
-        //atualizaVisorTentativas();
-        exibeMensagemVitoria();
-    }
-    else {
-        if (chute <= 0 || chute > 100) {
+        location.replace("./acerto.html");
+    } else {
+        if(chute <= 0 || chute > 100) {
             quantidade_tentativas++;
             atualizaVisorTentativas();
-            alert('O número deve estar entre 1 e 100!');
-        }
-        else {
-            switch (true) {
+            alert('O número deve estar entre 1 e 100!')
+        } else {
+            switch(true) {
                 case (chute > numero_sorteado):
                     quantidade_tentativas++;
                     atualizaVisorTentativas();
@@ -46,20 +45,38 @@ function verificarChute(chute) {
                     atualizaVisorTentativas();
                     alert('O chute foi menor que o número sorteado!');
                     break;
-                default:
+                default :
                     atualizaVisorTentativas();
                     alert('O chute não pode ser vazio!');
                     break;
             }
         }
     }
-}
-function exibeMensagemVitoria() {
-    location.replace("./acerto.html");
-    //console.log('Parabéns, otário');
-    //mensagem = `Você descobriu o número sorteado em ${quantidade_tentativas} tentativas e venceu o jogo.`;
-    //paragrafo_acerto.innerHTML = mensagem;
+}*/
+function verificarChute(chute) {
+    quantidade_tentativas++;
+    switch (true) {
+        case (chute === numero_sorteado):
+            location.replace("./acerto.html");
+            break;
+        case (chute <= 0 || chute > 100):
+            atualizaVisorTentativas();
+            alert('O número deve estar entre 1 e 100!');
+            break;
+        case (chute > numero_sorteado):
+            atualizaVisorTentativas();
+            alert('O chute foi maior que o número sorteado!');
+            break;
+        case (chute < numero_sorteado):
+            atualizaVisorTentativas();
+            alert('O chute foi menor que o número sorteado!');
+            break;
+        default:
+            atualizaVisorTentativas();
+            alert('O chute não pode ser vazio!');
+            break;
+    }
 }
 function atualizaVisorTentativas() {
-    visor_tentativas.innerText = 10 - quantidade_tentativas;
+    visor_tentativas != null ? visor_tentativas.innerText = (10 - quantidade_tentativas).toString() : console.log('Elemento de visualização das tentativas vazio');
 }
