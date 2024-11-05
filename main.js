@@ -1,16 +1,19 @@
-"use strict";
-let botao_chute = document.querySelector('#botao_chute');
-let input_chute = document.querySelector('#input_chute');
-let visor_tentativas = document.querySelector('#visor_tentativas');
-let mensagem_acerto = document.querySelector('#mensagem_acerto');
-let chute = 0;
-let numero_sorteado = 0;
-let quantidade_tentativas = 0;
-//mensagem_acerto = quantidade_tentativas.toString();
-sorteiaNumeroAleatorio();
-atualizaVisorTentativas();
-//ADICIONA EVENTO DE CLIQUE NO BOTÃO CHUTAR
-botao_chute?.addEventListener('click', () => {
+var botao_chute = document.querySelector('#botao_chute');
+var input_chute = document.querySelector('#input_chute');
+var visor_tentativas = document.querySelector('#visor_tentativas');
+var mensagem_acerto = document.querySelector('#mensagem_acerto');
+var chute = 0;
+var numero_sorteado = 0;
+var quantidade_tentativas = 0;
+switch (window.location.pathname) {
+    case '/index.html':
+        sorteiaNumeroAleatorio();
+        atualizaVisorTentativas();
+        break;
+    case '/acerto.html':
+        exibeMensagemVitoria();
+}
+botao_chute === null || botao_chute === void 0 ? void 0 : botao_chute.addEventListener('click', function () {
     input_chute != null ? chute = input_chute.valueAsNumber : console.log("Elemento INPUT vazio");
     verificarChute(chute);
 });
@@ -24,50 +27,25 @@ function reiniciarJogo() {
     atualizaVisorTentativas();
     sorteiaNumeroAleatorio();
 }
-/*function verificarChute(chute: number) {
-    if(chute === numero_sorteado) {
-        quantidade_tentativas++;
-        location.replace("./acerto.html");
-    } else {
-        if(chute <= 0 || chute > 100) {
-            quantidade_tentativas++;
-            atualizaVisorTentativas();
-            alert('O número deve estar entre 1 e 100!')
-        } else {
-            switch(true) {
-                case (chute > numero_sorteado):
-                    quantidade_tentativas++;
-                    atualizaVisorTentativas();
-                    alert('O chute foi maior que o número sorteado!');
-                    break;
-                case (chute < numero_sorteado):
-                    quantidade_tentativas++;
-                    atualizaVisorTentativas();
-                    alert('O chute foi menor que o número sorteado!');
-                    break;
-                default :
-                    atualizaVisorTentativas();
-                    alert('O chute não pode ser vazio!');
-                    break;
-            }
-        }
-    }
-}*/
 function verificarChute(chute) {
-    quantidade_tentativas++;
     switch (true) {
         case (chute === numero_sorteado):
-            location.replace("./acerto.html");
+            quantidade_tentativas++;
+            localStorage.setItem('tentativas', quantidade_tentativas.toString());
+            window.location.replace("./acerto.html");
             break;
         case (chute <= 0 || chute > 100):
+            quantidade_tentativas++;
             atualizaVisorTentativas();
             alert('O número deve estar entre 1 e 100!');
             break;
         case (chute > numero_sorteado):
+            quantidade_tentativas++;
             atualizaVisorTentativas();
             alert('O chute foi maior que o número sorteado!');
             break;
         case (chute < numero_sorteado):
+            quantidade_tentativas++;
             atualizaVisorTentativas();
             alert('O chute foi menor que o número sorteado!');
             break;
@@ -79,4 +57,14 @@ function verificarChute(chute) {
 }
 function atualizaVisorTentativas() {
     visor_tentativas != null ? visor_tentativas.innerText = (10 - quantidade_tentativas).toString() : console.log('Elemento de visualização das tentativas vazio');
+}
+function exibeMensagemVitoria() {
+    var tentativasSalvo = localStorage.getItem('tentativas');
+    console.log("Valor recuperado: ".concat(tentativasSalvo));
+    var palavra;
+    if (tentativasSalvo != null) {
+        var tentativas = parseInt(tentativasSalvo);
+        tentativas === 1 ? palavra = 'tentativa' : palavra = 'tentativas';
+        mensagem_acerto != null ? mensagem_acerto.innerText = "Parab\u00E9ns, jogador! Voc\u00EA acertou o n\u00FAmero secreto em ".concat(tentativas, " ").concat(palavra) : "AAAAAA";
+    }
 }
