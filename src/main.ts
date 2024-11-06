@@ -2,6 +2,8 @@ let botao_chute: HTMLElement | null = document.querySelector('#botao_chute');
 let input_chute: HTMLInputElement | null = document.querySelector('#input_chute');
 let visor_tentativas: HTMLElement | null = document.querySelector('#visor_tentativas');
 let mensagem_acerto: HTMLParagraphElement | null = document.querySelector('#mensagem_acerto');
+let mensagem_derrota: HTMLParagraphElement | null = document.querySelector('#mensagem_derrota');
+
 
 let chute: number = 0;
 let numero_sorteado: number = 0;
@@ -15,6 +17,9 @@ switch(window.location.pathname) {
         break;
     case '/public/acerto.html' :
         exibeMensagemVitoria();
+        break;
+    case '/public/derrota.html' :
+        exibeMensagemDerrota();
 }
         
 botao_chute?.addEventListener('click', () => {
@@ -63,7 +68,8 @@ function verificarChute(chute: number) {
                 break;
         }
     } else {
-        exibeMensagemDerrota();
+        //exibeMensagemDerrota();
+        window.location.replace('/public/derrota.html');
     }
 }
 
@@ -73,15 +79,15 @@ function atualizaVisorTentativas() {
 
 function exibeMensagemVitoria() {
     let tentativasSalvo: string | null = localStorage.getItem('tentativas');
-    let palavra;
+    let palavra: string;
 
     if(tentativasSalvo != null) {
-        let tentativas = parseInt(tentativasSalvo);
+        let tentativas: number = parseInt(tentativasSalvo);
         tentativas === 1? palavra = 'tentativa' : palavra = 'tentativas';
         mensagem_acerto != null? mensagem_acerto.innerText = `Você acertou o número secreto em ${tentativas} ${palavra}.` : null;
     }
 }
 
 function exibeMensagemDerrota() {
-    alert('DERROTA');
+    mensagem_derrota != null? mensagem_derrota.innerText = '\nInfelizmente, suas tentativas se esgotaram e você não acertou o número secreto.\n\nReinicie o jogo e tente novamente. Quem sabe agora você consegue?' : null;
 }

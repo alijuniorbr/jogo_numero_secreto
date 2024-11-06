@@ -2,6 +2,7 @@ var botao_chute = document.querySelector('#botao_chute');
 var input_chute = document.querySelector('#input_chute');
 var visor_tentativas = document.querySelector('#visor_tentativas');
 var mensagem_acerto = document.querySelector('#mensagem_acerto');
+var mensagem_derrota = document.querySelector('#mensagem_derrota');
 var chute = 0;
 var numero_sorteado = 0;
 var quantidade_tentativas = 0;
@@ -12,6 +13,9 @@ switch (window.location.pathname) {
         break;
     case '/public/acerto.html':
         exibeMensagemVitoria();
+        break;
+    case '/public/derrota.html':
+        exibeMensagemDerrota();
 }
 botao_chute === null || botao_chute === void 0 ? void 0 : botao_chute.addEventListener('click', function () {
     input_chute != null ? chute = input_chute.valueAsNumber : console.log("Elemento INPUT vazio");
@@ -57,7 +61,8 @@ function verificarChute(chute) {
         }
     }
     else {
-        exibeMensagemDerrota();
+        //exibeMensagemDerrota();
+        window.location.replace('/public/derrota.html');
     }
 }
 function atualizaVisorTentativas() {
@@ -73,5 +78,5 @@ function exibeMensagemVitoria() {
     }
 }
 function exibeMensagemDerrota() {
-    alert('DERROTA');
+    mensagem_derrota != null ? mensagem_derrota.innerText = '\nInfelizmente, suas tentativas se esgotaram e você não acertou o número secreto.\n\nReinicie o jogo e tente novamente. Quem sabe agora você consegue?' : null;
 }
