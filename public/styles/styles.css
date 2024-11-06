@@ -5,10 +5,14 @@
 
 body {
     width: 100%;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
     .textos /*FLEXBOX*/ {
-        padding: 10% 20% 0 20%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -66,7 +70,19 @@ body {
             background-color: rgb(218, 218, 218);
         }
 
+    .body_acerto {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+    }
+
 
     #botao_reiniciar {
+        height: 45px;
+        width: 120px;
+        font-size: 1.5rem;
 
     }
+    
