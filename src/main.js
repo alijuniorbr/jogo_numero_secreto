@@ -28,31 +28,36 @@ function reiniciarJogo() {
     sorteiaNumeroAleatorio();
 }
 function verificarChute(chute) {
-    switch (true) {
-        case (chute === numero_sorteado):
-            quantidade_tentativas++;
-            localStorage.setItem('tentativas', quantidade_tentativas.toString());
-            window.location.replace("/public/acerto.html");
-            break;
-        case (chute <= 0 || chute > 100):
-            quantidade_tentativas++;
-            atualizaVisorTentativas();
-            alert('O número deve estar entre 1 e 100!');
-            break;
-        case (chute > numero_sorteado):
-            quantidade_tentativas++;
-            atualizaVisorTentativas();
-            alert('O número sorteado é menor!');
-            break;
-        case (chute < numero_sorteado):
-            quantidade_tentativas++;
-            atualizaVisorTentativas();
-            alert('O número sorteado é maior!');
-            break;
-        default:
-            atualizaVisorTentativas();
-            alert('O chute não pode ser vazio!');
-            break;
+    if (quantidade_tentativas < 9) {
+        switch (true) {
+            case (chute === numero_sorteado):
+                quantidade_tentativas++;
+                localStorage.setItem('tentativas', quantidade_tentativas.toString());
+                window.location.replace("/public/acerto.html");
+                break;
+            case (chute <= 0 || chute > 100):
+                quantidade_tentativas++;
+                atualizaVisorTentativas();
+                alert('O número deve estar entre 1 e 100!');
+                break;
+            case (chute > numero_sorteado):
+                quantidade_tentativas++;
+                atualizaVisorTentativas();
+                alert('O número secreto é menor!');
+                break;
+            case (chute < numero_sorteado):
+                quantidade_tentativas++;
+                atualizaVisorTentativas();
+                alert('O número secreto é maior!');
+                break;
+            default:
+                atualizaVisorTentativas();
+                alert('O chute não pode ser vazio!');
+                break;
+        }
+    }
+    else {
+        exibeMensagemDerrota();
     }
 }
 function atualizaVisorTentativas() {
@@ -66,4 +71,7 @@ function exibeMensagemVitoria() {
         tentativas === 1 ? palavra = 'tentativa' : palavra = 'tentativas';
         mensagem_acerto != null ? mensagem_acerto.innerText = "Voc\u00EA acertou o n\u00FAmero secreto em ".concat(tentativas, " ").concat(palavra, ".") : null;
     }
+}
+function exibeMensagemDerrota() {
+    alert('DERROTA');
 }
